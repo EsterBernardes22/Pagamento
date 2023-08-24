@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formas de Pagamento</title>
+</head>
+<body>
+    <style>
+        body {
+            font: 12pt Arial;
+            background-image: url(Pagar.jpg);
+            text-align: center;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        
+        .payment-container {
+            background-color:  rgb(179, 150, 77);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        label, input, select {
+            display: block;
+            margin-bottom: 10px;
+            width: 100%;
+        }
+
+        button {
+            background-color:  rgb(136, 117, 7);
+            color: #ffffff;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    
+        a{
+            color: #ffffff;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+    </style>
+
+</head>
+<body>
+    <div class="payment-container">
+        <h2>Formas de Pagamento</h2>
+        <label for="fatura">Valor da Fatura:</label>
+        <input type="number" id="fatura" required>
+
+        <label for="opcao">Opção de Pagamento:</label>
+        <select id="opcao">
+            <option value="dinheiro">Pagamento no dinheiro/cheque - 10% desconto</option>
+            <option value="credito_vista">Pagamento no crédito/á vista - 5% desconto</option>
+            <option value="credito_2x">Pagamento no crédito 2x - Valor da Fatura + 10% Juros</option>
+            <option value="credito_3x">Pagamento no crédito 3x - Valor da Fatura + 20% Juros</option>
+            <option value="atraso">Atraso no pagamento - 2% de Juros ao Dia</option>
+        </select>
+
+        <button id="calcularButton">Calcular</button>
+
+        <div id="result"></div>
+        <a href="Sistema.html">Inicio</a>
+    </div>
+ 
+
+    <script>
+        const calcularButton = document.getElementById("calcularButton");
+        const faturaInput = document.getElementById("fatura");
+        const opcaoSelect = document.getElementById("opcao");
+        const resultDiv = document.getElementById("result");
+
+        calcularButton.addEventListener("click", function() {
+            const fatura = parseFloat(faturaInput.value);
+            const opcao = opcaoSelect.value;
+            let totalPagar = fatura;
+
+            switch (opcao) {
+                case "dinheiro":
+                    totalPagar *= 0.9; // 10% de desconto
+                    break;
+                case "credito_vista":
+                    totalPagar *= 0.95; // 5% de desconto
+                    break;
+                case "credito_2x":
+                    totalPagar *= 1.1; // 10% de juros
+                    break;
+                case "credito_3x":
+                    totalPagar *= 1.2; // 20% de juros
+                    break;
+                case "atraso":
+                    const diasAtraso = prompt("Informe os dias de atraso:");
+                    if (diasAtraso) {
+                        const juros = parseFloat(diasAtraso) * 0.02;
+                        totalPagar *= (1 + juros);
+                    }
+                    break;
+            }
+
+            resultDiv.textContent = `Total a pagar: R$ ${totalPagar.toFixed(2)}`;
+        });
+    </script>
+    
+</body>
+</html>

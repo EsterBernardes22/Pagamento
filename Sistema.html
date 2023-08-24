@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Pagamento</title>
+    <style>
+       
+       body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    background-image: url('Banco.jpg'); /* Caminho para a imagem de fundo */
+    background-size: cover; /* Ajusta o tamanho da imagem de fundo */
+}
+
+
+        .welcome-container {
+            background-color:  rgb(179, 150, 77);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        label, input {
+            display: block;
+            margin-bottom: 10px;
+            width: 100%;
+        }
+        
+        h2{
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            color: #000000;
+        }
+         
+        p{
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            color: #000000;
+        }
+        
+        h3{
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            color: #000000;
+        }
+
+        label{
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            color: #000000;
+        }
+
+        button {
+            background-color:  rgb(136, 117, 7);
+            color: #000000;
+            padding: 10px 18px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        a{
+            color: #fff;
+        }
+
+        #user-data {
+            margin-top: 20px;
+        }
+
+        #userInfo {
+            margin-top: 20px;
+            display: none;
+        }
+
+        #displayedName, #displayedAge {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="welcome-container">
+        <h2>Banco B</h2>
+        <p>Acessar Conta:</p>
+        <button id="enterButton">Login</button>
+
+        <div id="userData" style="display: none;">
+            <h3>Informe seus dados:</h3>
+            <label for="name">Nome:</label>
+            <input type="text" id="name" required>
+            
+            <label for="age">Idade:</label>
+            <input type="number" id="age" required> 
+        
+            <label for="Tel">Telefone:</label>
+            <input type="tel" id="Tel" required>
+        
+            <label for="End"> Endereço:</label>
+            <input type="text" id="End" required>
+        
+            <label for="CEP"> CEP:</label>
+            <input type="number" id="CEP" required>
+        
+            <label for="CPF"> CPF:</label>
+            <input type="number" id="CPF" required>
+            
+            <button id="submitData">Enviar</button>
+        </div>
+        
+
+        <div id="userInfo">
+            <h3>Parabéns!</h3>
+            <p>Seus dados:</p>
+            <p><strong>Nome:</strong> <span id="displayedName"></span></p>
+            <p><strong>Idade:</strong> <span id="displayedAge"></span></p>
+            <p><strong>Telefone:</strong> <span id="displayedTel"></span></p>
+            <p><strong>Endereço:</strong> <span id="displayedEnd"></span></p>
+            <p><strong>CEP:</strong> <span id="displayedCEP"></span></p>
+            <p><strong>CPF:</strong> <span id="displayedCPF"></span></p>
+            <p>Login efetuado com Sucesso!</p>
+            <a href="Pagamento.html">Entrar</a>
+        </div>
+      
+    </div>
+    
+
+    <script>
+        const enterButton = document.getElementById("enterButton");
+        const userDataSection = document.getElementById("userData");
+        const userInfoSection = document.getElementById("userInfo");
+        const nameInput = document.getElementById("name");
+        const ageInput = document.getElementById("age");
+        const EndInput = document.getElementById("End");
+        const TelInput = document.getElementById("Tel");
+        const CEPInput = document.getElementById("CEP");
+        const CPFInput = document.getElementById("CPF");
+        const displayedName = document.getElementById("displayedName");
+        const displayedAge = document.getElementById("displayedAge");
+        const displayedEnd = document.getElementById("displayedEnd");
+        const displayedTel = document.getElementById("displayedTel");
+        const displayedCEP = document.getElementById("displayedCEP");
+        const displayedCPF = document.getElementById("displayedCPF");
+
+        const displayedPhone = document.getElementById("displayedPhone");
+
+        enterButton.addEventListener("click", function() {
+            userDataSection.style.display = "block";
+            enterButton.style.display = "none";
+        });
+
+        const submitDataButton = document.getElementById("submitData");
+        submitDataButton.addEventListener("click", function() {
+            const name = nameInput.value;
+            const age = ageInput.value;
+            const Tel = TelInput.value;
+            const End = EndInput.value;
+            const CEP = CEPInput.value;
+            const CPF = CPFInput.value; 
+
+            displayedName.textContent = name;
+            displayedAge.textContent = age;
+            displayedTel.textContent = Tel;
+            displayedEnd.textContent = End;
+            displayedCEP.textContent = CEP;
+            displayedCPF.textContent = CPF;
+          
+
+            userDataSection.style.display = "none";
+            userInfoSection.style.display = "block";
+        });
+    </script>
+</body>
+</html>
